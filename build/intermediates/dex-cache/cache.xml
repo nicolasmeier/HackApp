@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Me\Documents\github\HackApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="355f44017a2b2ff4cc322676d1022aa4ea176482">
+        <dex dex="C:\Users\Me\Documents\github\HackApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_2208fc3930fe63eb91d3b6cfdafe732584ba55d1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Me\Documents\github\HackApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="acb26b6626e6c3763c098ef03172ac607d79a63e">
+        <dex dex="C:\Users\Me\Documents\github\HackApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_c2c40e2b3a52bcfecd19fcc68a2445147af8f00a\classes.dex" />
+    </item>
+
+</items>

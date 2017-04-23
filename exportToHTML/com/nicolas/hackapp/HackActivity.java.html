@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>HackActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+HackActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.nicolas.hackapp; 
+ 
+</span><span class="s0">import </span><span class="s1">android.app.Activity; 
+</span><span class="s0">import </span><span class="s1">android.content.res.ColorStateList; 
+</span><span class="s0">import </span><span class="s1">android.graphics.Color; 
+</span><span class="s0">import </span><span class="s1">android.graphics.PorterDuff; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.os.Handler; 
+</span><span class="s0">import </span><span class="s1">android.provider.Settings; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.ProgressBar; 
+ 
+</span><span class="s0">public class </span><span class="s1">HackActivity </span><span class="s0">extends </span><span class="s1">Activity { 
+ 
+    </span><span class="s0">private static final int </span><span class="s1">PROGRESS = </span><span class="s2">0x1</span><span class="s1">; 
+ 
+    </span><span class="s0">private </span><span class="s1">ProgressBar mProgress; 
+    </span><span class="s0">private </span><span class="s1">Button mButton; 
+    </span><span class="s0">private int </span><span class="s1">mProgressStatus = </span><span class="s2">0</span><span class="s1">; 
+ 
+    </span><span class="s0">private </span><span class="s1">Handler mHandler = </span><span class="s0">new </span><span class="s1">Handler(); 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_hack); 
+        </span><span class="s0">this</span><span class="s1">.getActionBar().hide(); 
+ 
+        mProgress = (ProgressBar) findViewById(R.id.progressBar); 
+        mButton = (Button) findViewById(R.id.button); 
+ 
+        mProgress.setProgressTintList(ColorStateList.valueOf(Color.GREEN)); 
+        mProgress.setScaleY(</span><span class="s2">40f</span><span class="s1">); 
+ 
+        mButton.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+            </span><span class="s0">public void </span><span class="s1">onClick(View v) { 
+                startHack(); 
+            } 
+        }); 
+ 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">startHack(){ 
+        mProgressStatus = </span><span class="s2">0</span><span class="s1">; 
+        </span><span class="s3">// Start lengthy operation in a background thread</span><span class="s1"> 
+        </span><span class="s0">new </span><span class="s1">Thread(</span><span class="s0">new </span><span class="s1">Runnable() { 
+            </span><span class="s0">public void </span><span class="s1">run() { 
+                </span><span class="s0">while </span><span class="s1">(mProgressStatus &lt; </span><span class="s2">100</span><span class="s1">) { 
+                    mProgressStatus = doHack(mProgressStatus); 
+ 
+                    </span><span class="s3">// Update the progress bar</span><span class="s1"> 
+                    mHandler.post(</span><span class="s0">new </span><span class="s1">Runnable() { 
+                        </span><span class="s0">public void </span><span class="s1">run() { 
+                            mProgress.setProgress(mProgressStatus); 
+                        } 
+                    }); 
+                } 
+                </span><span class="s0">try </span><span class="s1">{ 
+                    Thread.sleep(</span><span class="s2">3000</span><span class="s1">); 
+                    </span><span class="s3">// Update the progress bar</span><span class="s1"> 
+                    mHandler.post(</span><span class="s0">new </span><span class="s1">Runnable() { 
+                        </span><span class="s0">public void </span><span class="s1">run() { 
+                            mProgress.setProgress(</span><span class="s2">0</span><span class="s1">); 
+                        } 
+                    }); 
+                } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+                    e.printStackTrace(); 
+                } 
+ 
+            } 
+        }).start(); 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">doHack(</span><span class="s0">int </span><span class="s1">i){ 
+        </span><span class="s0">int </span><span class="s1">a = i + </span><span class="s2">1</span><span class="s1">; 
+        </span><span class="s0">try </span><span class="s1">{ 
+            Thread.sleep(</span><span class="s2">50</span><span class="s1">); 
+        } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+            e.printStackTrace(); 
+        } 
+        </span><span class="s0">return </span><span class="s1">a; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>
